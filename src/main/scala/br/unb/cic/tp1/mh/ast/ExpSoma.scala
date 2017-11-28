@@ -1,4 +1,5 @@
 package br.unb.cic.tp1.mh.ast
+import br.unb.cic.tp1.mh.visitors.Visitor
 
 case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
 
@@ -13,9 +14,13 @@ case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
     val t1 = lhs.verificaTipo
     val t2 = rhs.verificaTipo
 
-    if(t1 == TInt && t2 == TInt) {
+    if(t1.equals(TInt) && t2.equals(TInt)) {
       return TInt()
     }
     return TErro()
+  }
+
+  override def aceitar(v: Visitor): Unit = {
+    v.visitar(this)
   }
 }
