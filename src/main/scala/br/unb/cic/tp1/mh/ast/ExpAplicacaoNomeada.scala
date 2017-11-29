@@ -16,4 +16,8 @@ class ExpAplicacaoNomeada(val nome: String, argumentoAtual : Expressao) extends 
 
     return res
   }
+
+  override def verificaTipo(): Tipo = {
+    return argumentoAtual.verificaTipo()
+  }
 }
