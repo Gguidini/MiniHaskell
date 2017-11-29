@@ -10,6 +10,6 @@ case class TArr(val t1: Tipo, val t2: Tipo) extends Tipo
 
 trait Expressao {
   def avaliar() : Valor
-  def verificaTipo : Tipo
+  def verificaTipo() : Tipo
 }
 
