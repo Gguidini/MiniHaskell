@@ -9,7 +9,7 @@ class TesteExpLambda extends FlatSpec with Matchers {
   behavior of "a lambda expression"
   
   it should "be evaluated to Closure(x, x+1) when (x) -> x + 1" in {
-    val inc  = new ExpLambda("x", 
+    val inc  = new ExpLambda("x", TInt(),
       new ExpSoma(new ExpRef("x"), ValorInteiro(1)))
 
 

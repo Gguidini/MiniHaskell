@@ -7,6 +7,24 @@ import br.unb.cic.tp1.mh.memoria.Ambiente
 class TesteExpLet extends FlatSpec with Matchers {
 
   behavior of "a let expression"
+
+  it should "return body type if tying is correct" in {
+    Ambiente.iniciar()
+    // let x = true in x + x
+    val let = new ExpLet("x", ValorInteiro(10),
+      new ExpSoma(new ExpRef("x"), new ExpRef("x")))
+
+    let.verificaTipo() shouldBe a [TInt]
+  }
+
+  it should "return error of typing" in {
+    Ambiente.iniciar()
+    // let x = true in x + x
+    val let = new ExpLet("x", ValorBooleano(true),
+      new ExpSoma(new ExpRef("x"), new ExpRef("x")))
+
+    let.verificaTipo() shouldBe a [TErro]
+  }
   
   it should "be evaluated to Valor(20) when let x = 10 in x + x" in {
     Ambiente.iniciar()
