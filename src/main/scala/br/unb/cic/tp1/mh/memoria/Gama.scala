@@ -12,7 +12,7 @@ object Gama {
   }
 
   def salvar( simbolo: String, tipo: Tipo ): Unit = {
-    symbolTable( simbolo ) = tipo
+    symbolTable += (simbolo -> tipo)
   }
 
 }
