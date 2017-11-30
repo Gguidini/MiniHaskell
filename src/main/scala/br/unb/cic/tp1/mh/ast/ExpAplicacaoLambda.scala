@@ -9,7 +9,7 @@ case class ExpAplicacaoLambda(exp1 : Expressao, exp2 : Expressao) extends Expres
   override def avaliar(): Valor = {
     val v1 = exp1.avaliar()
     v1 match {
-      case Closure(v, c, ambiente) => {
+      case Closure(v, tipo, c, ambiente) => {
         Ambiente.novoAmbiente(ambiente)
         Ambiente.atualiza(v, exp2.avaliar())
 	      val res =  c.avaliar()

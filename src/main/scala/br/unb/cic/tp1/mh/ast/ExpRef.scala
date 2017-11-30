@@ -1,7 +1,7 @@
 package br.unb.cic.tp1.mh.ast
 
-import br.unb.cic.tp1.mh.memoria.Ambiente
 import br.unb.cic.tp1.exceptions.VariavelNaoDeclaradaException
+import br.unb.cic.tp1.mh.memoria.Ambiente
 import br.unb.cic.tp1.mh.tc.Gamma
 import br.unb.cic.tp1.mh.visitors.Visitor
 

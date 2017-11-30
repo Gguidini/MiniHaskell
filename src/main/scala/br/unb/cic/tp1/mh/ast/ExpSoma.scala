@@ -14,7 +14,7 @@ case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
     val t1 = lhs.verificaTipo
     val t2 = rhs.verificaTipo
 
-    if(t1.equals(TInt) && t2.equals(TInt)) {
+    if(t1 == TInt() && t2 == TInt()) {
       return TInt()
     }
     return TErro()
