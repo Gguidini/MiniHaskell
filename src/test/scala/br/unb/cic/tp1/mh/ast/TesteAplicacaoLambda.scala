@@ -15,7 +15,7 @@ class TesteAplicacaoLambda extends FlatSpec with Matchers {
     app.avaliar() should be (ValorInteiro(6))
   }
 
-  ignore should "be evaluated to 20 when let y = 10 in let f = (x -> x +y) in let y = 20 in f 10" in {
+  it should "be evaluated to 20 when let y = 10 in let f = (x -> x +y) in let y = 20 in f 10" in {
     Ambiente.iniciar()
     val let1 = new ExpLet("y", ValorInteiro(20), ExpAplicacaoLambda(ExpRef("f"), ValorInteiro(10)))
     val let2 = new ExpLet("f", new ExpLambda("x", TInt(), new ExpSoma(ExpRef("x"), ExpRef("y"))), let1)

@@ -9,7 +9,7 @@ import scala.collection.mutable
 class ExpLambda(val id : String, val tipoArgumento: Tipo, val corpo: Expressao) extends Expressao {
 
   override def avaliar(): Valor = {
-     return Closure(id, tipoArgumento, corpo, Ambiente.ambienteAtual())
+     return Closure(id, tipoArgumento, corpo, Ambiente.ambienteAtual().clone())
   }
 
   override def verificaTipo: Tipo = {
