@@ -13,15 +13,27 @@ class PPVisitor extends Visitor {
     sb.append(exp.valor.toString)
   }
 
-  override def visitar(exp: ExpSoma): Unit = {
+  override def visitar(exp: ExpAritmetica): Unit = {
     sb += '('
     exp.lhs.aceitar(this)
-    sb += '+'
+    
+    (exp) match {
+    	case e : ExpSoma => sb += '+'
+    	case e : ExpSub => sb += '-'
+    	case e : ExpMul => sb += '*'
+    	case e : ExpDivInt => sb += '/'
+    	case e : ExpAnd => sb += '&'
+    	case e : ExpXor => sb += '^'
+    	case e : ExpOr => sb += '|'
+    	case e : ExpNor => sb.append("~|")
+    	case e : ExpAritmetica => sb.append("op")
+    }
+
     exp.rhs.aceitar(this)
     sb += ')'
   }
 
-  override def visitar(exp: ExpLet): Unit = { }
+  override def visitar(exp: ExpLet): Unit = {}
 
   override def visitar(exp: ExpLambda): Unit = { }
 

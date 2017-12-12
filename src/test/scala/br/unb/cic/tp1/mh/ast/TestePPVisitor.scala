@@ -22,4 +22,17 @@ class TestePPVisitor extends  FlatSpec with Matchers{
     c.sb.toString should be ("((3+4)+5)")
   }
 
+    it should "be evaluated to (3 - 4) - 5) when (3-4)-5" in {
+    val soma = ExpSub(ExpSub(ValorInteiro(3), ValorInteiro(4)),
+                                ValorInteiro(5))
+
+    val c = new PPVisitor()
+
+    soma.aceitar(c)
+
+    println(c.sb.toString)
+    
+    c.sb.toString should be ("((3-4)-5)")
+  }
+
 }

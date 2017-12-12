@@ -1,14 +1,11 @@
 package br.unb.cic.tp1.mh.ast
 import br.unb.cic.tp1.mh.visitors.Visitor
 
-case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
+// Given that all aritmethic expressions are similar, changing only the operation
+// an abstract class was created to save lines of code.
+abstract class ExpAritmetica(val lhs : Expressao, val rhs : Expressao) extends Expressao {
 
-  override def avaliar(): Valor = {
-    val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
-    val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
-
-    return ValorInteiro(v1.valor + v2.valor)
-  }
+  override def avaliar(): Valor
 
   override def verificaTipo: Tipo = {
     val t1 = lhs.verificaTipo
@@ -24,3 +21,75 @@ case class ExpSoma(lhs : Expressao, rhs : Expressao) extends Expressao {
     v.visitar(this)
   }
 }
+
+case class ExpSoma(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor + v2.valor)
+    }
+}
+
+case class ExpSub(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor - v2.valor)
+    }
+}
+
+case class ExpMul(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor * v2.valor)
+    }
+}
+
+case class ExpDivInt(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor / v2.valor)
+    }
+}
+
+case class ExpXor(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor ^ v2.valor)
+    }
+}
+
+case class ExpAnd(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor & v2.valor)
+    }
+}
+
+case class ExpOr(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(v1.valor | v2.valor)
+    }
+}
+
+case class ExpNor(override val lhs : Expressao, override val rhs : Expressao) extends ExpAritmetica(lhs, rhs) {
+    override def avaliar() : Valor = {
+      val v1 = lhs.avaliar().asInstanceOf[ValorInteiro]
+      val v2 = rhs.avaliar().asInstanceOf[ValorInteiro]
+
+    return ValorInteiro(~(v1.valor | v2.valor))
+    }
+}     

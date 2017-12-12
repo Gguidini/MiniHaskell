@@ -9,7 +9,7 @@ class ContadorVisitor extends Visitor {
 
   override def visitar(exp: ValorBooleano): Unit = contador += 1
 
-  override def visitar(exp: ExpSoma): Unit = {
+  override def visitar(exp: ExpAritmetica): Unit = {
     exp.lhs.aceitar(this)
     exp.rhs.aceitar(this)
     contador += 1
