@@ -15,5 +15,6 @@ trait Visitor {
   def visitar(exp: Closure) : Unit
   def visitar(exp: ExpCondicional) : Unit
   def visitar(exp: ExpIf) : Unit
+  def visitar(exp : ExpCondList) : Unit
 
 }

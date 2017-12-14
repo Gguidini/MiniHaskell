@@ -57,4 +57,8 @@ class ContadorVisitor extends Visitor {
       exp.corpoElse.aceitar(this)
     contador += 1
   }
+
+  override def visitar(exp : ExpCondList) : Unit = {
+    exp.conditions.foreach(c => c.aceitar(this))
+  }
 }

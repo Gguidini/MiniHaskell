@@ -113,4 +113,28 @@ it should "be evaluated to if((1+1)!=2){(5+10)}" in {
     println(v.sb.toString)
     v.sb.toString should be ("(x->(x+1))(5)")
   }
+
+  it should "give some clue as to what is going on - (1+1==2 && true==true)" in {
+    val cond1 = new ExpCondicional(ExpSoma(ValorInteiro(1), ValorInteiro(1)), ValorInteiro(2))
+    val cond2 = new ExpCondicional(ValorBooleano(true), ValorBooleano(true))
+    val list = new ExpCondList(List(cond1, cond2), "&&")
+    val v = new PPVisitor()
+
+    list.aceitar(v)
+
+    println(v.sb.toString)
+    v.sb.toString should be ("((1+1)==2&&true==true)")
+  }
+
+    it should "give some clue as to what is going on - (1+1==2 || true==true)" in {
+    val cond1 = new ExpCondicional(ExpSoma(ValorInteiro(1), ValorInteiro(1)), ValorInteiro(2))
+    val cond2 = new ExpCondicional(ValorBooleano(true), ValorBooleano(true))
+    val list = new ExpCondList(List(cond1, cond2), "||")
+    val v = new PPVisitor()
+
+    list.aceitar(v)
+
+    println(v.sb.toString)
+    v.sb.toString should be ("((1+1)==2||true==true)")
+  }
 }
