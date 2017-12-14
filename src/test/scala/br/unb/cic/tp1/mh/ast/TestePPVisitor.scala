@@ -75,6 +75,20 @@ class TestePPVisitor extends  FlatSpec with Matchers{
 
   }
 
+it should "be evaluated to if((1+1)!=2){(5+10)}" in {
+    val cond = new ExpCondicional(ExpSoma(ValorInteiro(1), ValorInteiro(1)), ValorInteiro(2), ValorBooleano(false))
+    val expIf = new ExpIf(cond, ExpSoma(ValorInteiro(5), ValorInteiro(10)))
+    val v = new PPVisitor()
+
+    expIf.aceitar(v)
+
+    // output
+    println(v.sb.toString)
+
+    v.sb.toString should be ("if((1+1)!=2){\n(5+10)\n}")
+
+  }
+
   it should "be evaluated to if((1+1)==2){(5+10)}else{20}" in {
     val cond = new ExpCondicional(ExpSoma(ValorInteiro(1), ValorInteiro(1)), ValorInteiro(2))
     val expIf = new ExpIf(cond, ExpSoma(ValorInteiro(5), ValorInteiro(10)), ValorInteiro(20))

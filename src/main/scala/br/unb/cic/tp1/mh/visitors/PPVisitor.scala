@@ -71,7 +71,13 @@ class PPVisitor extends Visitor {
   override def visitar(exp: ExpCondicional) : Unit = {
     sb += '('
     exp.cond.aceitar(this)
-    sb.append("==")
+
+    if(exp.testNature.v){
+      sb.append("==")
+    }
+    else{
+      sb.append("!=")
+    }
     exp.teste.aceitar(this)
     sb += ')'
   }

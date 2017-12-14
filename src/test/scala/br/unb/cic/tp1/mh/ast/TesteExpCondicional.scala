@@ -30,6 +30,20 @@ class TesteExpCondicional extends FlatSpec with Matchers {
     	condition.avaliar should be (ValorBooleano(true))
   	}
 
+    it should "return False for (true != true)" in {
+      Ambiente.iniciar()
+      val condition = new ExpCondicional(ValorBooleano(true), ValorBooleano(true), ValorBooleano(false))
+    
+      condition.avaliar should be (ValorBooleano(false))
+    }
+
+        it should "return True for (1+1 != 5)" in {
+      Ambiente.iniciar()
+      val condition = new ExpCondicional(ExpSoma(new ValorInteiro(1),new ValorInteiro(1)), ValorInteiro(5), ValorBooleano(false))
+    
+      condition.avaliar should be (ValorBooleano(true))
+  }
+
   	it should "return TBool for (1+1 == 2)" in {
   		Ambiente.iniciar()
   		val condition = new ExpCondicional(ExpSoma(new ValorInteiro(1),new ValorInteiro(1)), ValorInteiro(5))
@@ -57,4 +71,5 @@ class TesteExpCondicional extends FlatSpec with Matchers {
     
     	condition.verificaTipo should be (TErro())
   	}  	
+
 }
